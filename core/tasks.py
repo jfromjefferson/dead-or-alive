@@ -1,3 +1,4 @@
+import datetime
 from typing import Optional
 
 import httpx
@@ -29,5 +30,6 @@ def check_url(url_id: int) -> None:
         except (Exception, ):
             url.last_status = "DOWN"
 
+        url.last_run = datetime.datetime.now()
         db.add(url)
         db.commit()
